@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form Registrasi Mahasiswa</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            padding: 25px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2575fc;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin: 12px 0 6px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2575fc;
+            box-shadow: 0 0 6px rgba(37, 117, 252, 0.4);
+            outline: none;
+        }
+
+        input[type="submit"],
+        .btn-home {
+            width: 100%;
+            padding: 12px;
+            background: #2575fc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        input[type="submit"]:hover,
+        .btn-home:hover {
+            background: #1b5ed7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Form Registrasi Mahasiswa</h2>
+        <form>
+            <label>Nama Mahasiswa:</label>
+            <input type="text" name="nama" id="namaInput" placeholder="Ketik nama...">
+
+            <datalist id="namaList"></datalist>
+
+            <label>NIM:</label>
+            <input type="text" name="nim" placeholder="Masukkan NIM">
+
+            <label>Mata Kuliah:</label>
+            <input type="text" name="matkul" placeholder="Masukkan Mata Kuliah">
+
+            <label>Dosen:</label>
+            <input type="text" name="dosen" placeholder="Masukkan Nama Dosen">
+
+            <input type="submit" value="Daftar">
+        </form>
+
+        <a href="home.html" class="btn-home">⬅ Kembali ke Home</a>
+    </div>
+
+    <script>
+        const namaInput = document.getElementById("namaInput");
+        const namaList = document.getElementById("namaList");
+
+        const daftarNama = [
+            "Andi Saputra", "Budi Santoso", "Citra Dewi", "Dewi Lestari", "Eko Prasetyo",
+            "Fajar Nugroho", "Gita Ramadhan", "Hanafi Rahman", "Indra Wahyu Tirayasa", "Joko Widodo",
+            "Kiki Amalia", "Lina Marlina", "Mira Lesmana", "Nina Zatulini", "Oki Setiana Dewi",
+            "Putri Ayu", "Rina Nose", "Siti Nurhaliza", "Tina Toon", "Umar Bin Khattab",
+            "Vina Panduwinata", "Wulan Guritno", "Yusuf Mansur", "Zaskia Sungkar"
+        ];
+
+        namaInput.addEventListener("input", function () {
+            const val = this.value.toLowerCase();
+            namaList.innerHTML = "";
+
+            if (val.length > 0) {
+                const filterNama = daftarNama.filter(n => n.toLowerCase().includes(val));
+                filterNama.forEach(nama => {
+                    let option = document.createElement("option");
+                    option.value = nama;
+                    namaList.appendChild(option);
+                });
+                namaInput.setAttribute("list", "namaList");
+            } else {
+                namaInput.removeAttribute("list");
+            }
+        });
+    </script>
+</body>
+
+</html>

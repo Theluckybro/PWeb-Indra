@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dropdown Dinamis</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.15);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 22px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 15px 0 5px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        select:focus {
+            border-color: #6a5acd;
+            outline: none;
+            box-shadow: 0px 0px 5px rgba(106, 90, 205, 0.5);
+            background-color: #fff;
+        }
+
+        option {
+            padding: 10px;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            text-decoration: none;
+            background: #6c63ff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #574fd6;
+            transform: scale(1.05);
+        }
+    </style>
+
+    <script>
+        function updateMerk() {
+            const jenis = document.getElementById("jenis").value;
+            const merk = document.getElementById("merk");
+            merk.innerHTML = "<option value=''>--Pilih Merk--</option>";
+
+            let opsi = [];
+
+            if (jenis === "Laptop") {
+                opsi = ["Asus", "Acer", "Lenovo", "Dell"];
+            } else if (jenis === "Smartphone") {
+                opsi = ["Samsung", "Xiaomi", "Oppo", "iPhone"];
+            } else if (jenis === "Desktop") {
+                opsi = ["HP", "Lenovo", "Dell"];
+            }
+
+            opsi.forEach(function (item) {
+                let option = document.createElement("option");
+                option.value = item;
+                option.text = item;
+                merk.appendChild(option);
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Dynamic Dropdown List</h2>
+
+        <label for="jenis">Pilih Jenis Produk:</label>
+        <select id="jenis" onchange="updateMerk()">
+            <option value="">--Pilih--</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Smartphone">Smartphone</option>
+            <option value="Desktop">Desktop</option>
+        </select>
+
+        <label for="merk">Pilih Merk:</label>
+        <select id="merk">
+            <option value="">--Pilih Merk--</option>
+        </select>
+
+        <a href="home.html" class="back-btn">⬅ Kembali ke Home</a>
+    </div>
+</body>
+
+</html>

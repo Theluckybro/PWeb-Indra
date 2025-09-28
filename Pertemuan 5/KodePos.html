@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pencarian Kode Pos</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            padding: 30px;
+            background: linear-gradient(to right, #eef2f3, #dfe9f3);
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #2575fc;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        select,
+        button {
+            padding: 10px 12px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        select:focus {
+            border-color: #2575fc;
+            outline: none;
+            box-shadow: 0 0 6px rgba(37, 117, 252, 0.4);
+        }
+
+        button {
+            background: #2575fc;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #1b5ed7;
+            transform: scale(1.03);
+        }
+
+        #hasil {
+            display: block;
+            margin-top: 15px;
+            padding: 12px;
+            background: #e8f0fe;
+            border-radius: 8px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            text-decoration: none;
+            background: #6c757d;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #5a6268;
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        const data = {
+            "Jawa Timur": {
+                "Surabaya": { "Keputih": "60111", "Tenggilis": "60292" },
+                "Malang": { "Lowokwaru": "65145", "Klojen": "65111" }
+            },
+            "Jawa Barat": {
+                "Bandung": { "Cicadas": "40121", "Coblong": "40132" },
+                "Bekasi": { "Bekasi Timur": "17111", "Bekasi Barat": "17131" }
+            },
+            "Jawa Tengah": {
+                "Semarang": { "Candisari": "50257", "Pedurungan": "50192" },
+                "Surakarta": { "Laweyan": "57148", "Banjarsari": "57131" }
+            },
+            "DKI Jakarta": {
+                "Jakarta Pusat": { "Gambir": "10110", "Menteng": "10310" },
+                "Jakarta Selatan": { "Kebayoran Baru": "12120", "Tebet": "12810" }
+            },
+            "Banten": {
+                "Tangerang": { "Cipondoh": "15147", "Karawaci": "15112" },
+                "Serang": { "Cipocok Jaya": "42121", "Curug": "42171" }
+            },
+            "DI Yogyakarta": {
+                "Kota Yogyakarta": { "Gondokusuman": "55221", "Umbulharjo": "55161" },
+                "Sleman": { "Depok": "55281", "Ngaglik": "55581" }
+            }
+        };
+
+        function updateKota() {
+            const prov = document.getElementById("provinsi").value;
+            const kotaSelect = document.getElementById("kota");
+            const kecSelect = document.getElementById("kecamatan");
+
+            kotaSelect.innerHTML = '<option value="">-- Pilih Kota/Kabupaten --</option>';
+            kecSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+            kecSelect.disabled = true;
+
+            if (prov !== "") {
+                Object.keys(data[prov]).forEach(kota => {
+                    let option = document.createElement("option");
+                    option.value = kota;
+                    option.text = kota;
+                    kotaSelect.appendChild(option);
+                });
+                kotaSelect.disabled = false;
+            } else {
+                kotaSelect.disabled = true;
+            }
+        }
+
+        function updateKecamatan() {
+            const prov = document.getElementById("provinsi").value;
+            const kota = document.getElementById("kota").value;
+            const kecSelect = document.getElementById("kecamatan");
+
+            kecSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+
+            if (kota !== "") {
+                Object.keys(data[prov][kota]).forEach(kec => {
+                    let option = document.createElement("option");
+                    option.value = kec;
+                    option.text = kec;
+                    kecSelect.appendChild(option);
+                });
+                kecSelect.disabled = false;
+            } else {
+                kecSelect.disabled = true;
+            }
+        }
+
+        function cariKodePos() {
+            const prov = document.getElementById("provinsi").value;
+            const kota = document.getElementById("kota").value;
+            const kec = document.getElementById("kecamatan").value;
+            let hasil = "";
+
+            if (prov && kota && kec) {
+                hasil = data[prov][kota][kec] + " - " + kec + ", " + kota + ", " + prov;
+            } else {
+                hasil = "Silakan pilih Provinsi, Kota, dan Kecamatan.";
+            }
+
+            document.getElementById("hasil").innerText = hasil;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Pencarian Kode Pos</h2>
+
+        <label>Provinsi:</label>
+        <select id="provinsi" onchange="updateKota()">
+            <option value="">-- Pilih Provinsi --</option>
+            <option value="Jawa Timur">Jawa Timur</option>
+            <option value="Jawa Barat">Jawa Barat</option>
+            <option value="Jawa Tengah">Jawa Tengah</option>
+            <option value="DKI Jakarta">DKI Jakarta</option>
+            <option value="Banten">Banten</option>
+            <option value="DI Yogyakarta">DI Yogyakarta</option>
+        </select>
+
+        <label>Kota/Kabupaten:</label>
+        <select id="kota" onchange="updateKecamatan()" disabled>
+            <option value="">-- Pilih Kota/Kabupaten --</option>
+        </select>
+
+        <label>Kecamatan:</label>
+        <select id="kecamatan" disabled>
+            <option value="">-- Pilih Kecamatan --</option>
+        </select>
+
+        <button onclick="cariKodePos()">Cari</button>
+        <p><b>Hasil:</b> <span id="hasil"></span></p>
+
+        <a href="home.html" class="back-btn">⬅ Kembali ke Home</a>
+    </div>
+</body>
+
+</html>
