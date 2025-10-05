@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Modern</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        /* Custom styles for a subtle touch */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card-feature {
+            border: none;
+            border-top: 4px solid var(--bs-primary);
+            transition: transform .2s;
+        }
+
+        .card-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="#">
+                    <i class="bi bi-box-seam-fill"></i>
+                    ProjekKu
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Tentang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Kontak</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+        <div class="row">
+
+            <aside class="col-lg-3 mb-4">
+                <div class="list-group shadow-sm">
+                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="bi bi-file-earmark-text me-2"></i> Laporan
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="bi bi-graph-up-arrow me-2"></i> Analitik
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="bi bi-gear me-2"></i> Pengaturan
+                    </a>
+                </div>
+            </aside>
+
+            <main class="col-lg-9">
+                <div class="p-5 mb-4 bg-primary text-white rounded-3 shadow">
+                    <h1 class="display-5 fw-bold">Selamat Datang, Indra!</h1>
+                    <p class="col-md-8 fs-5">Ini adalah panel utama Anda. Jelajahi fitur-fitur yang tersedia di bawah
+                        untuk memulai.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm card-feature">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold"><i class="bi bi-joystick me-2 text-primary"></i> Proyek
+                                    Game</h5>
+                                <p class="card-text">Kelola aset, desain level, dan progres pengembangan game.</p>
+                                <a href="#" class="btn btn-outline-primary">Lihat Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm card-feature" style="border-top-color: var(--bs-success);">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold"><i class="bi bi-book me-2 text-success"></i> Tugas akhir
+                                </h5>
+                                <p class="card-text">Lacak tahapan perancangan dan produksi untuk proyek tugas akhir.</p>
+                                <a href="#" class="btn btn-outline-success">Buka Proyek</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="py-4 mt-4 bg-dark text-white-50">
+        <div class="container text-center">
+            <small>Hak Cipta &copy; 2025 ProjekKu</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
